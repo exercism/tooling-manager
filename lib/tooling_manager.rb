@@ -2,6 +2,8 @@ ENV["EXERCISM_ENV"] ||= "development"
 
 require 'mandate'
 require 'aws-sdk-ecr'
+require 'aws-sdk-ec2'
+require 'aws-sdk-dynamodb'
 require 'exercism-config'
 
 require "zeitwerk"

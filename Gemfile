@@ -6,10 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'mandate'
+gem "aws-sdk-ec2"
 gem "aws-sdk-ecr"
+gem "aws-sdk-dynamodb"
 gem 'zeitwerk'
 gem "rake"
-gem 'exercism-config', '>= 0.45.0'
+gem 'exercism-config', '>= 0.46.0'
+#gem 'exercism-config', path: "../exercism_config"
 
 gem "mocha"
 gem "minitest"

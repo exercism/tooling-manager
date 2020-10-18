@@ -3,7 +3,7 @@
 require "bundler/setup"
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
-require "tooling_manger"
+require "tooling_manager"
 
 puts "Starting Tooling Manager"
 STDOUT.flush
