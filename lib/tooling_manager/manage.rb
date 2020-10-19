@@ -3,7 +3,7 @@ module ToolingManager
     include Mandate
 
     def call
-      tags = ExtractToolingTags.()
+      tags = ExtractMachineTags.()
       repos = DetermineToolingRepos.(tags)
 
       repos.each do |repo_name|
