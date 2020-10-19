@@ -30,7 +30,7 @@ module ToolingManager
 
     memoize
     def region
-      `curl http://169.254.169.254/latest/meta-data/placement/availability-zone`
+      `curl http://169.254.169.254/latest/meta-data/placement/region`
     end
   end
 end
