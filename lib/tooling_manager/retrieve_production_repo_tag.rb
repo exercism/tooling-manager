@@ -8,16 +8,18 @@ module ToolingManager
     initialize_with :repo_name
 
     def call
+      puts "** Looking up production tag for #{repo_name}"
+
       client = ExercismConfig::SetupECRClient.()
 
-      resp = client.describe_images({
-                                      repository_name: repo_name,
-                                      image_ids: [
-                                        {
-                                          image_tag: PRODUCTION_TAG
-                                        }
-                                      ]
-                                    })
+      resp = client.describe_images(
+        repository_name: repo_name,
+        image_ids: [
+          {
+            image_tag: PRODUCTION_TAG
+          }
+        ]
+      )
       image = resp.image_details.first
       return nil unless image
 
