@@ -19,8 +19,7 @@ module ToolingManager
         `#{IMG_CMD} pull -state #{STATE_DIRECTORY} #{image}`
         `#{IMG_CMD} unpack -state #{STATE_DIRECTORY} #{image}`
         `chmod -R 550 rootfs`
-        `mkdir rootfs/mnt/exercism-iteration`
-        `chmod -R 770 rootfs/mnt/exercism-iteration`
+        `chmod -R 770 rootfs/mnt/`
       end
     end
 
