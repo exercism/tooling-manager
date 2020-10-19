@@ -4,7 +4,8 @@ module ToolingManager
 
     memoize
     def call
-      client = Aws::EC2::Client.new
+      aws_config = ExercismConfig::GenerateAwsSettings.()
+      client = Aws::EC2::Client.new(aws_config)
       resp = client.describe_tags(
         {
           filters: [
