@@ -10,8 +10,6 @@ module ToolingManager
     def call
       return if Dir.exist?(release_directory)
 
-      puts "** Installing #{repo}/#{tag}"
-
       FileUtils.mkdir_p(release_directory)
 
       # TODO: Set permissions here?

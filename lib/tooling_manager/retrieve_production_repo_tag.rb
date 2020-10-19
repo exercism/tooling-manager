@@ -8,8 +8,6 @@ module ToolingManager
     initialize_with :repo_name
 
     def call
-      puts "** Looking up production tag for #{repo_name}"
-
       client = ExercismConfig::SetupECRClient.()
 
       resp = client.describe_images(
