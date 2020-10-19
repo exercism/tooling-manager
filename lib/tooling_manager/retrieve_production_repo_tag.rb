@@ -27,6 +27,8 @@ module ToolingManager
       # And return the next one (which might be nil)
       # making this a noop as if there was no tag
       image[:image_tags].first
+    rescue Aws::ECR::Errors::ImageNotFoundException
+      nil
     end
   end
 end
