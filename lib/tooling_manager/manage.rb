@@ -32,6 +32,8 @@ module ToolingManager
     def log_in_to_ecr!
       return if @logged_in_to_ecr
 
+      # TODO; Retrieve this base url from ExercismConfig
+      # TODO; Retrieve this region from ExercismConfig
       `aws ecr get-login-password --region eu-west-2 | /opt/container_tools/img login -u AWS --password-stdin 591712695352.dkr.ecr.eu-west-2.amazonaws.com` # rubocop:disable Layout/LineLength
       @logged_in_to_ecr = true
     end

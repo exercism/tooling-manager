@@ -29,6 +29,7 @@ module ToolingManager
 
     memoize
     def image
+      # TODO; Retrieve this base url from ExercismConfig
       "591712695352.dkr.ecr.eu-west-2.amazonaws.com/#{repo}:#{tag}"
     end
   end
