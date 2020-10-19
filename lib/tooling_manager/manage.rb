@@ -16,7 +16,8 @@ module ToolingManager
           puts "** Found production tag: #{repo_name}/#{production_tag}"
         else
           puts "** No production tag found"
-          FileUtils.rm_r(Paths.current_path(repo_name))
+          symlink = Paths.current_path(repo_name)
+          FileUtils.rm_r(symlink) if File.exist?(symlink)
           next
         end
 
