@@ -11,14 +11,16 @@ module ToolingManager
       return if Dir.exist?(release_directory)
 
       FileUtils.mkdir_p(release_directory)
+      FileUtils.chmod(0o750, release_directory)
 
       # TODO: Set permissions here?
 
       Dir.chdir(release_directory) do
         `#{IMG_CMD} pull -state #{STATE_DIRECTORY} #{image}`
         `#{IMG_CMD} unpack -state #{STATE_DIRECTORY} #{image}`
-        `chmod -R a-w rootfs`
-        `chmod -R go-rwx rootfs`
+        `chmod -R 550 rootfs`
+        `mkdir rootfs/mnt/exercism-iteration`
+        `chmod -R 770 rootfs/mnt/exercism-iteration`
       end
     end
 

@@ -12,6 +12,7 @@ module ToolingManager
       target = Paths.release_path(repo_name, tag)
       link = Paths.current_path(repo_name)
       system("ln -fs #{target} #{link}")
+      FileUtils.chmod(0o750, link)
     end
   end
 end
