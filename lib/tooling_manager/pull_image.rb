@@ -18,6 +18,10 @@ module ToolingManager
       Dir.chdir(release_directory) do
         `#{IMG_CMD} pull -state #{STATE_DIRECTORY} #{image}`
         `#{IMG_CMD} unpack -state #{STATE_DIRECTORY} #{image}`
+
+        # These are owned by exercism_manager but
+        # used by exercism_worker. We want exercism_worker
+        # to be able to read from rootfs and to write to /mnt.
         `chmod -R 550 rootfs`
         `chmod -R 770 rootfs/mnt/`
       end
