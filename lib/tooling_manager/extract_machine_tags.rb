@@ -4,8 +4,7 @@ module ToolingManager
 
     memoize
     def call
-      aws_config = ExercismConfig::GenerateAwsSettings.()
-      client = Aws::EC2::Client.new(aws_config)
+      client = Aws::EC2::Client.new(region: region)
       resp = client.describe_tags(
         {
           filters: [
@@ -27,6 +26,11 @@ module ToolingManager
     memoize
     def instance_id
       `curl http://169.254.169.254/latest/meta-data/instance-id`
+    end
+
+    memoize
+    def region
+      `curl http://169.254.169.254/latest/meta-data/placement/availability-zone`
     end
   end
 end
