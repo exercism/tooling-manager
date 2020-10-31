@@ -11,8 +11,8 @@ module ToolingManager
     def call
       target = Paths.release_path(repo_name, tag)
       link = Paths.current_path(repo_name)
-      p "ln -fs #{target} #{link}"
-      p system("ln -fs #{target} #{link}")
+      system("rm #{link}")
+      system("ln -fs #{target} #{link}")
       FileUtils.chmod(0o750, link)
     end
   end
