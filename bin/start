@@ -20,3 +20,15 @@ FileUtils.chdir APP_ROOT do
   system! "bundle exec bin/manager"
 end
 
+require "bundler/setup"
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+
+require "tooling_manager"
+
+puts "Starting Tooling Manager"
+STDOUT.flush
+ToolingManager::Manage.()
+
+if Dir.exists?("/home/exercism")
+  File.write("/home/exercism/.tooling-manager-ready", "Let's gooooooo!")
+end
