@@ -9,3 +9,6 @@ puts "Starting Tooling Manager"
 STDOUT.flush
 ToolingManager::Manage.()
 
+if Dir.exists?("/home/exercism")
+  File.write("/home/exercism/.tooling-manager-ready")
+end
