@@ -16,8 +16,6 @@ FileUtils.chdir APP_ROOT do
   system! "bundle config set deployment 'true'"
   system! "bundle config set without 'development test'"
   system! "bundle check || bundle install"
-
-  system! "bundle exec bin/manager"
 end
 
 require "bundler/setup"
