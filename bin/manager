@@ -10,5 +10,5 @@ STDOUT.flush
 ToolingManager::Manage.()
 
 if Dir.exists?("/home/exercism")
-  File.write("/home/exercism/.tooling-manager-ready")
+  File.write("/home/exercism/.tooling-manager-ready", "Let's gooooooo!")
 end
