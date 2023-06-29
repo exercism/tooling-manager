@@ -28,6 +28,6 @@ puts "Starting Tooling Manager"
 STDOUT.flush
 ToolingManager::Manage.()
 
-if Dir.exists?("/home/exercism")
+if Dir.exist?("/home/exercism")
   File.write("/home/exercism/.tooling-manager-ready", "Let's gooooooo!")
 end
