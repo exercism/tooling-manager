@@ -11,6 +11,7 @@ end
 
 FileUtils.chdir APP_ROOT do
   system! 'git fetch'
+  system! 'git checkout main'
   system! 'git reset --hard origin/main'
 
   system! "bundle config set deployment 'true'"
