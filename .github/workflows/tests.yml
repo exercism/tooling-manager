@@ -26,16 +26,7 @@ jobs:
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
           ruby-version: .ruby-version
-
-      ###
-      # Caching using GitHub's caching action
-      - name: Cache Bundler
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          bundler-cache: true
 
       ###
       # Install bundler and yarn dependencies
@@ -43,11 +34,10 @@ jobs:
         env:
           EXERCISM_ENV: test
           EXERCISM_CI: true
-          DYNAMODB_PORT: ${{ job.services.dynamodb.ports['8000'] }}
+          AWS_PORT: ${{ job.services.aws.ports['4566'] }}
         run: |
-          bundle config path vendor/bundle # This is needed for the caching above
-          bundle install --jobs 4 --retry 3
           bundle exec setup_exercism_config
+          bundle exec setup_exercism_local_aws
 
       ###
       # Setup code climate
