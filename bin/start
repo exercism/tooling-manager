@@ -11,6 +11,7 @@ end
 
 FileUtils.chdir APP_ROOT do
   system! 'git fetch'
+  system! 'git checkout main'
   system! 'git reset --hard origin/main'
 
   system! "bundle config set deployment 'true'"
@@ -27,6 +28,6 @@ puts "Starting Tooling Manager"
 STDOUT.flush
 ToolingManager::Manage.()
 
-if Dir.exists?("/home/exercism")
+if Dir.exist?("/home/exercism")
   File.write("/home/exercism/.tooling-manager-ready", "Let's gooooooo!")
 end

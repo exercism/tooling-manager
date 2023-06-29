@@ -4,7 +4,7 @@ module ToolingManager
 
     memoize
     def call
-      client = Aws::EC2::Client.new(region: region)
+      client = Aws::EC2::Client.new(region:)
       resp = client.describe_tags(
         {
           filters: [
