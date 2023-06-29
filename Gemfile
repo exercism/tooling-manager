@@ -11,7 +11,7 @@ gem "aws-sdk-ecr"
 gem "aws-sdk-dynamodb"
 gem 'zeitwerk'
 gem "rake"
-gem 'exercism-config', '>= 0.46.0'
+gem 'exercism-config', '>= 0.102.0'
 #gem 'exercism-config', path: "../exercism_config"
 
 gem "mocha"
