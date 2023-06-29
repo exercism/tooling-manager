@@ -19,10 +19,10 @@ require "tooling_manager"
 module Minitest
   class Test
     def write_to_dynamodb(table_name, item)
-      client = ExercismConfig::SetupDynamoDBClient.()
+      client = Exercism.dynamodb_client
       client.put_item(
-        table_name: table_name,
-        item: item
+        table_name:,
+        item:
       )
     end
   end

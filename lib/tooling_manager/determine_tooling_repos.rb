@@ -36,7 +36,7 @@ module ToolingManager
 
     memoize
     def groups_reference
-      client = ExercismConfig::SetupDynamoDBClient.()
+      client = Exercism.dynamodb_client
 
       # Get all the language_groups from dynamo
       resp = client.scan(
