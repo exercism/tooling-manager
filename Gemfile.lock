@@ -18,6 +18,13 @@ GEM
     aws-sdk-ecr (1.61.0)
       aws-sdk-core (~> 3, >= 3.176.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-kms (1.68.0)
+      aws-sdk-core (~> 3, >= 3.176.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.127.0)
+      aws-sdk-core (~> 3, >= 3.176.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.6)
     aws-sdk-secretsmanager (1.78.0)
       aws-sdk-core (~> 3, >= 3.176.0)
       aws-sigv4 (~> 1.1)
@@ -81,6 +88,7 @@ DEPENDENCIES
   aws-sdk-dynamodb
   aws-sdk-ec2
   aws-sdk-ecr
+  aws-sdk-s3
   exercism-config (>= 0.102.0)
   mandate
   minitest

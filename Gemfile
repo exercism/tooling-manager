@@ -22,3 +22,7 @@ gem 'rubocop-minitest'
 gem 'rubocop-performance'
 gem 'simplecov', '~> 0.17.0'
 
+
+# Required for CI. 
+# Should probably just be moved to a test group.
+gem "aws-sdk-s3" 
