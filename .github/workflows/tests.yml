@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      dynamodb:
-        image: "amazon/dynamodb-local"
+      aws:
+        image: "localstack/localstack"
         ports:
-          - 8000
+          - 4566
 
     steps:
       ###
