@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.4.4'
 
 gem 'mandate'
+gem 'base64'
 gem "aws-sdk-ec2"
 gem "aws-sdk-ecr"
 gem "aws-sdk-dynamodb"
