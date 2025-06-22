@@ -49,6 +49,9 @@ GEM
     minitest (5.25.5)
     mocha (2.7.1)
       ruby2_keywords (>= 0.0.5)
+    nokogiri (1.18.8-arm64-darwin)
+      racc (~> 1.4)
+    ostruct (0.6.2)
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
@@ -94,7 +97,7 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  ruby
+  arm64-darwin-23
 
 DEPENDENCIES
   aws-sdk-dynamodb
@@ -107,6 +110,8 @@ DEPENDENCIES
   mandate
   minitest
   mocha
+  nokogiri
+  ostruct
   rake
   rubocop
   rubocop-minitest
