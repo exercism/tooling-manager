@@ -25,12 +25,12 @@ module ToolingManager
 
     memoize
     def instance_id
-      `curl http://169.254.169.254/latest/meta-data/instance-id`
+      `curl -s -H "X-aws-ec2-metadata-token: $(curl -s -X PUT -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600' http://169.254.169.254/latest/api/token)" http://169.254.169.254/latest/meta-data/instance-id` # rubocop:disable Layout/LineLength
     end
 
     memoize
     def region
-      `curl http://169.254.169.254/latest/meta-data/placement/region`
+      `curl -s -H "X-aws-ec2-metadata-token: $(curl -s -X PUT -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600' http://169.254.169.254/latest/api/token)" http://169.254.169.254/latest/meta-data/placement/region` # rubocop:disable Layout/LineLength
     end
   end
 end
