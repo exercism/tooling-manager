@@ -61,23 +61,33 @@ module ToolingManager
 
     def warm_up!(repo_name)
       track = repo_name.delete_suffix("-test-runner")
+      dir = Dir.mktmpdir("warm-up-#{track}-", JOBS_DIR)
 
-      Dir.mktmpdir("warm-up-#{track}-", JOBS_DIR) do |dir|
-        exercise = write_example_solution!(track, dir)
-        unless exercise
-          log "#{repo_name}: skipped, as there's no example solution for it"
-          next
-        end
+      exercise = write_example_solution!(track, dir)
+      return log("#{repo_name}: skipped, as there's no example solution for it") unless exercise
 
-        # The runner's user inside the container needs to write its results.
-        FileUtils.chmod_R(0o777, dir)
+      # The runner's user inside the container needs to write its results.
+      FileUtils.chmod_R(0o777, dir)
 
-        started_at = now
-        _, status = Open3.capture2e(docker_run_command(repo_name, exercise, dir))
-        log "#{repo_name}: ran #{exercise} in #{(now - started_at).round(1)}s (exit status #{status.exitstatus})"
-      end
+      started_at = now
+      _, status = Open3.capture2e(docker_run_command(repo_name, exercise, dir))
+      log "#{repo_name}: ran #{exercise} in #{(now - started_at).round(1)}s " \
+          "(exit status #{status.exitstatus}, tests #{tests_status(dir)})"
     rescue StandardError => e
       log "#{repo_name}: skipped after an error: #{e.message}"
+    ensure
+      # Some runners leave files owned by the container's other users, which
+      # we can't delete. rm_rf leaves those behind without raising, and
+      # disk-guard clears anything in /opt/jobs that's over an hour old.
+      FileUtils.rm_rf(dir) if dir
+    end
+
+    # The example should pass, so anything else is worth a look, but it
+    # doesn't stop the runner's files being read, which is what matters here.
+    def tests_status(dir)
+      JSON.parse(File.read(File.join(dir, "results.json")))["status"]
+    rescue StandardError
+      "wrote no results"
     end
 
     # Copies an exercise from the track's repo on EFS into dir, as the website
