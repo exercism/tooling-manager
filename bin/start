@@ -26,8 +26,14 @@ require "tooling_manager"
 
 puts "Starting Tooling Manager"
 STDOUT.flush
-ToolingManager::Manage.()
+repos = ToolingManager::Manage.()
 
 if Dir.exist?("/home/exercism")
-  File.write("/home/exercism/.tooling-manager-ready", "Let's gooooooo!")
+  ready_file = "/home/exercism/.tooling-manager-ready"
+
+  # Only on the machine's first pass, so the invoker starts once the
+  # test runners have each run once. See WarmUpTestRunners for why.
+  ToolingManager::WarmUpTestRunners.(repos) unless File.exist?(ready_file)
+
+  File.write(ready_file, "Let's gooooooo!")
 end
