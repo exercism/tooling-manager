@@ -25,8 +25,6 @@ module ToolingManager
         # enough to fill the disk.
         remove_untagged!(repo_name)
       end
-
-      repos
     end
 
     private
