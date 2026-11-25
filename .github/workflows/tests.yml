@@ -11,7 +11,11 @@ jobs:
 
     services:
       aws:
-        image: "localstack/localstack"
+        # Pinned: from 2026.7.x, localstack/localstack:latest requires a
+        # LOCALSTACK_AUTH_TOKEN and exits 55 ("License activation failed")
+        # without one, failing the job before any test runs. 4.6 needs no
+        # credentials, and the tooling invoker's tests pin it too.
+        image: "localstack/localstack:4.6"
         ports:
           - 4566
 
@@ -23,7 +27,7 @@ jobs:
       ###
       # Setup Ruby - this needs to match the version in the Gemfile
       - name: Set up Ruby
-        uses: ruby/setup-ruby@a4effe49ee8ee5b8b5091268c473a4628afb5651
+        uses: ruby/setup-ruby@13e7a03dc3ac6c3798f4570bfead2aed4d96abfb
         with:
           ruby-version: .ruby-version
           bundler-cache: true
