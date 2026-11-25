@@ -33,7 +33,9 @@ if Dir.exist?("/home/exercism")
 
   # Only on the machine's first pass, so the invoker starts once the
   # test runners have each run once. See WarmUpTestRunners for why.
-  ToolingManager::WarmUpTestRunners.(repos) unless File.exist?(ready_file)
+  first_pass = !File.exist?(ready_file)
+  ToolingManager::WarmUpTestRunners.(repos) if first_pass
 
   File.write(ready_file, "Let's gooooooo!")
+  puts "Ready for the invoker (first pass)" if first_pass
 end
